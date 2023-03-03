@@ -1,6 +1,3 @@
-import java.io.Console;
-import java.util.Arrays;
-
 // Задано уравнение вида q + w = e. q,w,e >= 0.
 // Некоторые цифры могут быть заменены знакомы вопроса, например 2? + ?5 = 69
 // Требуется восстановить выражение до верного равенства.
@@ -10,7 +7,8 @@ import java.util.Arrays;
 
 public class ex3 {
     public static void main(String[] args) {
-        String inputString = System.console().readLine();
+        // String inputString = System.console().readLine();
+        String inputString = "?? + 99 = 1000";
         String[] inputArray = inputString.split(" ");
         char[] charQ = inputArray[0].toCharArray();
         char[] charW = inputArray[2].toCharArray();
@@ -32,30 +30,6 @@ public class ex3 {
         System.out.println();
     }
 
-
-
-    public static void tryVariants(char[] charQ, char[] charW, char[] charE) {
-        checkProcess(charQ, charW, charE);
-        for (int i = 0; i < charQ.length; i++) {
-            if (charQ[i] == '?') {
-                for (int j = 0; j < 10; j++) {
-                    tryVariants(changeOnechar(charQ, i, (char) ('0' + j)), charW, charE);
-                }
-            }
-        }
-        for (int i = 0; i < charW.length; i++) {
-            for (int j = 0; charW[i] == '?' & j < 10; j++) {
-                tryVariants(charQ, changeOnechar(charW, i, (char) ('0' + j)), charE);
-            }
-        }
-        for (int i = 0; i < charE.length; i++) {
-            for (int j = 0; charE[i] == '?' & j < 10; j++) {
-                tryVariants(charQ, charW, changeOnechar(charE, i, (char) ('0' + j)));
-            }
-        }
-        checkWithChars(charQ, charW, charE);
-    }
-
     public static char[] changeOnechar(char[] charArray, int index, char newValue) {
         charArray[index] = newValue;
         return charArray;
@@ -63,22 +37,13 @@ public class ex3 {
 
     public static void tryVariantsRedo(char[] charQ, char[] charW, char[] charE) {
         for (int i = 0; i < charQ.length; i++) {
-            if (charQ[i] == '?'){
+            if (charQ[i] == '?') {
                 for (int j = 0; j < 10; j++) {
-                    tryVariants(changeOnechar(charQ, i, (char)('0' + j)), charW, charE);
+                    tryVariantsRedo(changeOnechar(charQ, i, (char) ('0' + j)), charW, charE);
                 }
             }
         }
         checkWithChars(charQ, charW, charE);
-    }
-
-    public static void recustionCheck(int enterNum) {
-        enterNum += 1;
-        for (int i = 1; i < 3 & enterNum < 3; i++) {
-            System.out.println("Вход в метод номер: " + enterNum + " Проход по циклу, номер " + i);
-            recustionCheck(enterNum);
-        }
-        System.out.println();
     }
 
     public static void checkWithChars(char[] charQ, char[] charW, char[] charE) {
@@ -92,13 +57,34 @@ public class ex3 {
             numW += Character.getNumericValue(charW[i]) * Math.pow(10, charW.length - (i + 1));
         for (int i = 0; i < charE.length; i++)
             numE += Character.getNumericValue(charE[i]) * Math.pow(10, charE.length - (i + 1));
-        System.out.println("Проверка: " + numQ + " + " + numW + " = " + numE);
+        // System.out.println("Проверка: " + numQ + " + " + numW + " = " + numE);
         if (numQ + numW == numE) {
             System.out.println(numQ + " + " + numW + " = " + numE);
             System.exit(0);
         }
     }
 
+    // public static void tryVariants(char[] charQ, char[] charW, char[] charE) {
+    // checkProcess(charQ, charW, charE);
+    // for (int i = 0; i < charQ.length; i++) {
+    // if (charQ[i] == '?') {
+    // for (int j = 0; j < 10; j++) {
+    // tryVariants(changeOnechar(charQ, i, (char) ('0' + j)), charW, charE);
+    // }
+    // }
+    // }
+    // for (int i = 0; i < charW.length; i++) {
+    // for (int j = 0; charW[i] == '?' & j < 10; j++) {
+    // tryVariants(charQ, changeOnechar(charW, i, (char) ('0' + j)), charE);
+    // }
+    // }
+    // for (int i = 0; i < charE.length; i++) {
+    // for (int j = 0; charE[i] == '?' & j < 10; j++) {
+    // tryVariants(charQ, charW, changeOnechar(charE, i, (char) ('0' + j)));
+    // }
+    // }
+    // checkWithChars(charQ, charW, charE);
+    // }
 }
 
 // if (inputArray[0].replaceAll("\\d", "").length() == 0)
