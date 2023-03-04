@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import javax.swing.JPopupMenu.Separator;
@@ -9,42 +10,45 @@ import javax.swing.JPopupMenu.Separator;
 
 // День 2. Рекурсия не хочет вызывать все свои варианты
 // День 3. Код без рекурсии. Общий план - объеденить все переменные в одну строку.
+// День 3. Новый план. Выловить все '?' и создать число по длине их количества.
 
 public class ex3 {
     public static void main(String[] args) {
         String inputString = System.console().readLine();
-        // String inputString = "?? + 10 = 102";
-        String[] inputArray = inputString.split(" ");
-        for (int i = 0; i < inputArray.length; i = i + 2) {
-            for (int j = 0; j < inputArray[i].length(); j++) {
-                if (inputArray[i].charAt(j) == '?') {
-                    for (int j2 = 0; j2 < 10; j2++) {
-                        inputArray[i] = putNumberInSting(inputArray[i], j, j2);
-                        checkResult(inputArray);
-                    }
-                }
+        int countQM = 0; // count Question Marks
+        for (int i = 0; i < inputString.length(); i++)
+            if (inputString.charAt(i) == '?')
+                countQM++;
+        int[] posOfQM = new int[countQM];
+        int idToFill = 0;
+        for (int i = 0; i < inputString.length(); i++){
+            if (inputString.charAt(i) == '?'){
+                posOfQM[idToFill] = i;
+                idToFill++;
             }
+        }
+        int tempNum = 0;
+        for (int tryNums = 0; tryNums < Math.pow(10, countQM); tryNums++) {
+            tempNum = tryNums;
+            for (int i = countQM - 1; i >=0 ; --i) {
+                inputString = replaceCharWithNumber(inputString, posOfQM[i], tempNum % 10);
+                tempNum /= 10;
+            }
+            checkResult(inputString);
         }
         System.out.println("Подходящих решений нет.");
     }
-
-    public static String putNumberInSting(String inString, int idOfChar, int newValue) {
-        char[] chars = inString.toCharArray();
-        chars[idOfChar] = (char)(newValue + '0');
-        return String.valueOf(chars);
+    public static String replaceCharWithNumber(String inputString, int index, int newValue){     
+        char[] chars = inputString.toCharArray();
+        chars[index] = (char)('0' + newValue);
+        return String.valueOf(chars);       
     }
 
-    public static void checkResult(String[] arrayToCheck) {
-        System.out.println("Progress: " + String.join("", arrayToCheck));
-        boolean onlyNumbers = true;
-        for (String i : arrayToCheck)
-            if (i.indexOf('?') != -1)
-                onlyNumbers = false;
-        if (onlyNumbers)
-            if (Integer.parseInt(arrayToCheck[0]) + Integer.parseInt(arrayToCheck[2]) == Integer
-                    .parseInt(arrayToCheck[4])) {
-                System.out.println(String.join("", arrayToCheck));
-                System.exit(0);
-            }
+    public static void checkResult(String stringToCheck) {
+        String[] variables = stringToCheck.split(" ");
+        if (Integer.parseInt(variables[0]) + Integer.parseInt(variables[2]) == Integer.parseInt(variables[4])){
+            System.out.println(variables[0] + " + " + variables[2] + " = " + variables[4]);
+            System.exit(0);
+        }
     }
 }
