@@ -5,10 +5,14 @@ public class ex0 {
         System.out.print("Введите число n: ");
         int n = Integer.parseInt(System.console().readLine());
         int sum = 0;
+        int factorial = 1;
         for (int i = 1; i <= n; i++) {
             sum += n;
+            factorial *= n;
         }
         System.out.println("Сумма чисел от 1 до " + n + ": " + sum);
+        System.out.println("n! = " + factorial);
     }
+    
     
 }
