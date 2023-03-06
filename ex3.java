@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class ex3 {
     public static void main(String[] args) {
+        System.out.println("Введите уравнение формата q + w = e, q,w,e >= 0. Некоторые цифры могут быть заменены знакомы вопроса.");
         Scanner sc = new Scanner(System.in);
         String inputString = sc.nextLine();
         sc.close();
