@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 // Задано уравнение вида q + w = e. q,w,e >= 0.
 // Некоторые цифры могут быть заменены знакомы вопроса, например 2? + ?5 = 69
 // Требуется восстановить выражение до верного равенства.
@@ -5,8 +7,9 @@
 
 public class ex3 {
     public static void main(String[] args) {
-        String inputString = " ";
-        inputString = System.console().readLine();
+        Scanner sc = new Scanner(System.in);
+        String inputString = sc.nextLine();
+        sc.close();
         int countQM = 0; // count Question Marks
         for (int i = 0; i < inputString.length(); i++)
             if (inputString.charAt(i) == '?')

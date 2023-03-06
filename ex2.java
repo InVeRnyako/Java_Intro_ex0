@@ -1,14 +1,15 @@
 // Реализовать простой калькулятор
 import java.lang.System;
+import java.util.Scanner;
 
 public class ex2 {
     public static void main(String[] args) {
         System.out.println(
                 "Введите математическое выражение без пробелов." + 
                 "Поддерживаются знаки: [ + - * / ], порядок действий игнорируется.");
-        String inputStr = " ";
-        inputStr = System.console().readLine();
-
+        Scanner sc = new Scanner(System.in);
+        String inputStr = sc.nextLine();
+        sc.close();
         String[] inputSplit = inputStr.split("\\D");
         int[] arguments = new int[inputSplit.length];
         for (int i = 0; i < arguments.length; i++) {
