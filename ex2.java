@@ -6,7 +6,8 @@ public class ex2 {
         System.out.println(
                 "Введите математическое выражение без пробелов." + 
                 "Поддерживаются знаки: [ + - * / ], порядок действий игнорируется.");
-        String inputStr = System.console().readLine();
+        String inputStr = " ";
+        inputStr = System.console().readLine();
 
         String[] inputSplit = inputStr.split("\\D");
         int[] arguments = new int[inputSplit.length];

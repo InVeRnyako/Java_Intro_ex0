@@ -5,7 +5,8 @@
 
 public class ex3 {
     public static void main(String[] args) {
-        String inputString = System.console().readLine();
+        String inputString = " ";
+        inputString = System.console().readLine();
         int countQM = 0; // count Question Marks
         for (int i = 0; i < inputString.length(); i++)
             if (inputString.charAt(i) == '?')
