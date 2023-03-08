@@ -10,7 +10,7 @@ public class ex3 {
         while (inputNotValid) {
             System.out.println(
                     "Введите уравнение формата q + w = e, q,w,e >= 0. Некоторые цифры могут быть заменены знакомы вопроса.");
-            inputString = System.console().readLine().replaceAll("[^0-9?+= ]", inputString);
+            inputString = System.console().readLine().replaceAll("[^0-9?+= ]", "");
             if (inputString == null || inputString == "")
                 System.out.println("Ошибка ввода данных.");
             else {
@@ -61,13 +61,13 @@ public class ex3 {
     public static boolean checkInput(String inString) {
         String[] inArray = inString.split(" ");
         if (inArray.length == 5) {
-            inArray[0].replace("+=", "");
-            inArray[2].replace("+=", "");
-            inArray[4].replace("+=", "");
-            if (inArray[0] == "" || inArray[1] != "+" || inArray[2] == "" || inArray[3] != "=" || inArray[4] == "") {
+            inArray[0] = inArray[0].replaceAll("[+=]", "");
+            inArray[2] = inArray[2].replaceAll("[+=]", "");
+            inArray[4] = inArray[4].replaceAll("[+=]", "");
+            if (inArray[0].equals("") || inArray[2].equals("") || inArray[4].equals("") || !inArray[3].equals("=")
+                    || !inArray[1].equals("+"))
                 return false;
-            } else
-                return true;
+            return true;
         }
         return false;
     }
