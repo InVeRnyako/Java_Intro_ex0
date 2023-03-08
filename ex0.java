@@ -5,12 +5,15 @@ import java.util.Scanner;
 public class ex0 {
     public static void main(String[] args) {
         System.out.println("Вычисление n-го треугольного числа и n!.");
-        System.out.print("Введите число n: ");
         int n = 0;
         boolean numNotValid = true;
         while (numNotValid) {
             n = getIntFromUser();
-            if (n > 0) numNotValid = false;
+            System.out.print("Введите число n: ");
+            if (n > 0)
+                numNotValid = false;
+            else
+                System.out.println("Ошибка ввода данных.");
         }
         int sum = 0;
         int factorial = 1;
@@ -28,9 +31,9 @@ public class ex0 {
         Scanner sc = new Scanner(System.in);
         inputString = sc.nextLine();
         sc.close();
-        try{
+        try {
             inputInt = Integer.parseInt(inputString);
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Ошибка ввода данных: " + e);
             return 0;
         }
