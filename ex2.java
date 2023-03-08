@@ -1,6 +1,7 @@
 
 // Реализовать простой калькулятор
 import java.lang.System;
+import java.util.regex.Pattern;
 
 public class ex2 {
     public static void main(String[] args) {
@@ -9,8 +10,8 @@ public class ex2 {
         String operators = "";
         String[] inputSplit = {};
         while (inputNotValid) {
-            System.out.println("Введите математическое поддерживаются знаки: [ + - * / ], порядок действий игнорируется.");
-            inputStr = System.console().readLine().replaceAll("[^0-9+-*/]", "");
+            System.out.println("Введите математическое выражение. Поддерживаются знаки: [ + - * / ], порядок действий игнорируется.");
+            inputStr = System.console().readLine().replaceAll("[^0-9\\+\\-\\*\\/]", "");
             if (inputStr == "" || inputStr == null){
                 System.out.println("Ошибка ввода!");
                 continue;
