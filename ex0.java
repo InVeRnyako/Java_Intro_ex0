@@ -8,8 +8,8 @@ public class ex0 {
         int n = 0;
         boolean numNotValid = true;
         while (numNotValid) {
-            n = getIntFromUser();
             System.out.print("Введите число n: ");
+            n = getIntFromUser();
             if (n > 0)
                 numNotValid = false;
             else
@@ -18,18 +18,17 @@ public class ex0 {
         int sum = 0;
         int factorial = 1;
         for (int i = 1; i <= n; i++) {
-            sum += n;
-            factorial *= n;
+            sum += i;
+            factorial *= i;
         }
         System.out.println("Сумма чисел от 1 до " + n + ": " + sum);
-        System.out.println("n! = " + factorial);
+        System.out.println(n + "! = " + factorial);
     }
 
     public static Integer getIntFromUser() {
-        String inputString = "";
         int inputInt = 0;
         Scanner sc = new Scanner(System.in);
-        inputString = sc.nextLine();
+        String inputString = sc.nextLine();
         sc.close();
         try {
             inputInt = Integer.parseInt(inputString);
